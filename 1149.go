@@ -30,20 +30,21 @@ func main() {
 			} else {
 				c[j] = h[i][j]
 			}
-			fmt.Printf("%d\t", c[j])
+			h[i][j] = c[j]
 		}
-		fmt.Printf("\n")
 	}
 
-	fmt.Printf("%d", (c[0] + c[1] + c[2]))
+	fmt.Printf("%d", min(c[0], c[1], c[2]))
 }
 
-func min(a, b int) int {
-	if a > b {
-		return b
+func min(a ...int) int {
+	v := int(^uint(0) >> 1)
+	for _, e := range a {
+		if e < v {
+			v = e
+		}
 	}
-
-	return a
+	return v
 }
 
 func getNeighbor(curr int) int {
